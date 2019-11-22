@@ -1,0 +1,53 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>WebSocket Sample</span>
+    <span class="example-spacer"></span>
+
+   
+    
+    <button 
+      #anchor 
+      [hidden]="notificationsNumber==0"
+      (click)="ShowNotifications()" 
+      class="k-button"
+      [matBadge]="notificationsNumber"
+      matBadgePosition="above after"
+      matBadgeColor="warn">Notificações</button>
+    <button
+      #anchorNoNotification
+      (click)="ShowNoNotifications()" 
+      class="k-button"
+      [hidden]="notificationsNumber>0">
+      Notificações
+    </button>
+    <kendo-popup style="width: 20%" [animate]="animate" [anchor]="anchor" [popupClass]="'content popup'" *ngIf="show">
+      <p style="margin: 30px;" *ngIf="listMessage.length==0">Você não possui notificações</p>
+
+      <mat-list *ngIf="listMessage.length>0">
+        <h3 mat-subheader>Notificações</h3>
+        <mat-list-item *ngFor="let message of listMessage">
+          <mat-icon mat-list-icon>sms</mat-icon>
+          <h4 mat-line>{{message.message}}</h4>
+          <p mat-line> {{message.date | date:'medium'}} </p>
+        </mat-list-item>
+      </mat-list>
+    </kendo-popup>
+
+    <kendo-popup style="width: 20%" [animate]="animate" [anchor]="anchorNoNotification" [popupClass]="'content popup'" *ngIf="showNoNotification">
+      <p style="margin: 30px;" *ngIf="listMessage.length==0">Você não possui notificações</p>
+      <mat-list *ngIf="listMessage.length>0">
+        <h3 mat-subheader>Notificações</h3>
+        <mat-list-item *ngFor="let message of listMessage">
+          <mat-icon mat-list-icon>sms</mat-icon>
+          <h4 mat-line>{{message.message}}</h4>
+          <p mat-line> {{message.date | date:'medium'}} </p>
+        </mat-list-item>
+      </mat-list>
+    </kendo-popup>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+
+
+
+
